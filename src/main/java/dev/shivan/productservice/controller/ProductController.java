@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import dev.shivan.productservice.dtos.GenericProductDto;
 import dev.shivan.productservice.services.ProductService;
 
 
@@ -36,9 +37,10 @@ public class ProductController {
     // localhost:8080/products/{id}
     // localhost:8080/products/123
     @GetMapping("{id}")
-    public String getProductById(@PathVariable("id") Long id) {
-        return "Here is product id: " + id;
+    public GenericProductDto getProductById(@PathVariable("id") Long id) {
+        return productservice.getProductById(id);
     }
+
 
     @DeleteMapping("{id}")
     public void deleteProductById() {
@@ -46,8 +48,10 @@ public class ProductController {
     }
 
     @PostMapping
-    public String createProduct() {
-        return "Created new product with id : " + UUID.randomUUID();
+    public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
+        //return "Created new product with id : " + UUID.randomUUID();
+        //return "created ned product with name : "+ productDto.getTitle();
+        return productservice.createProduct(product);
     }
 
     @PutMapping("{id}")

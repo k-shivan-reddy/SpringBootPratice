@@ -14,12 +14,22 @@ public class FakeStoreProductService implements ProductService{
 
     private RestTemplateBuilder restTemplateBuilder;
     private String getProductRequestUrl = "https://fakestoreapi.com/products/{id}";
+    private String createProductRequestUrl = "https://fakestoreapi.com/products";
 
     public FakeStoreProductService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplateBuilder = restTemplateBuilder;
     }
+    public GenericProductDto createProduct(GenericProductDto genericProductDto)
+    {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<GenericProductDto> response =
+        restTemplate.postForEntity(createProductRequestUrl, genericProductDto, GenericProductDto.class);
 
+        return response.getBody();
+    }
     public GenericProductDto getProductById(Long id){
+        // If we create  a service like this we will not get the same instance what 
+        // Spring would have initialised 
         //        FakeStoreProductService fakeStoreProductService = new FakeStoreProductService();
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> response =

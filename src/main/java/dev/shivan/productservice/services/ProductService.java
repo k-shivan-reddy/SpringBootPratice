@@ -8,4 +8,5 @@ import dev.shivan.productservice.dtos.GenericProductDto;
 @Service
 public interface ProductService {
     GenericProductDto getProductById(Long id);
+    GenericProductDto createProduct(GenericProductDto product);
 }
