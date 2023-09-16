@@ -1,11 +1,17 @@
 package dev.shivan.productservice.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import dev.shivan.productservice.dtos.ExceptionDto;
 import dev.shivan.productservice.dtos.GenericProductDto;
+import dev.shivan.productservice.exceptions.NotFoundException;
 import dev.shivan.productservice.services.ProductService;
 
 
@@ -30,21 +36,24 @@ public class ProductController {
     // }
 
     @GetMapping
-    public void getAllProducts() {
+    public List<GenericProductDto>  getAllProducts() {
+        return productservice.getAllProducts();
 
     }
 
     // localhost:8080/products/{id}
     // localhost:8080/products/123
     @GetMapping("{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) {
+    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
         return productservice.getProductById(id);
     }
 
 
     @DeleteMapping("{id}")
-    public void deleteProductById() {
-
+    public  ResponseEntity<GenericProductDto>  deleteProductById(@PathVariable("id") Long id) {
+        
+        ResponseEntity<GenericProductDto> responseEntity = new ResponseEntity<GenericProductDto>(productservice.deleteProductbyId(id), HttpStatus.OK);
+        return responseEntity;
     }
 
     @PostMapping
@@ -57,4 +66,6 @@ public class ProductController {
     @PutMapping("{id}")
     public void updateProductById() {
     }
+
+
 }

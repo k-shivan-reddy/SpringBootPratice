@@ -1,5 +1,7 @@
 package dev.shivan.productservice.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import dev.shivan.productservice.Model.Product;
@@ -12,5 +14,13 @@ public class SelfProductService implements ProductService{
         @Override
         public GenericProductDto createProduct(GenericProductDto product) {
             return null;
-        }  
+        } 
+        @Override
+        public List<GenericProductDto> getAllProducts() {
+            return null;
+        }
+        public GenericProductDto deleteProductbyId(Long id)
+        {
+            return null;
+        }
 }
