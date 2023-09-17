@@ -1,4 +1,4 @@
-package dev.shivan.productservice.dtos;
+package dev.shivan.productservice.thirdpartyclients.productservices.FakeStore;
 
 import lombok.Getter;
 import lombok.Setter;
