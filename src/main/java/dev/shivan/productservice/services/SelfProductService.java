@@ -23,4 +23,8 @@ public class SelfProductService implements ProductService{
         {
             return null;
         }
+        public GenericProductDto updateProductById(GenericProductDto genericProductDto, Long id)
+        {
+            return null;
+        }
 }
