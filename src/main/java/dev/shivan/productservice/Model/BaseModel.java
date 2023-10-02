@@ -16,5 +16,5 @@ public class BaseModel {
     @GenericGenerator(name = "uuidgenerator",strategy = "uuid")
     @Column(name = "id", columnDefinition = "binary(16)", nullable = false, updatable = false)
     private UUID uuid;
-    private String name;
+    protected String name;
 }

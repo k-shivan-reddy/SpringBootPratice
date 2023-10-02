@@ -6,11 +6,18 @@ import org.springframework.stereotype.Service;
 
 import dev.shivan.productservice.Model.Product;
 import dev.shivan.productservice.dtos.GenericProductDto;
+import dev.shivan.productservice.repositories.ProductRepository;
 
 @Service("selfproductImpl")
 public class SelfProductService implements ProductService{
+    private ProductRepository productRepository;
+
+    public SelfProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
     public GenericProductDto getProductById(Long id){
-        return null;}
+        return null;
+    }
         @Override
         public GenericProductDto createProduct(GenericProductDto product) {
             return null;

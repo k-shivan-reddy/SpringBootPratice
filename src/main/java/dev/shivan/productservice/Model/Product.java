@@ -18,10 +18,10 @@ public class Product extends BaseModel{
     // => L to R: 1 : 1
     // => R to L: m : 1
     // => Ans:    m : 1
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "category")
     private Category category;
 
-    private double price;
-
-
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    private Price price;
 }
